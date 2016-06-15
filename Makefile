@@ -1,0 +1,30 @@
+#
+# Makefile for DataBaseProject
+# Author: Jake Runyan
+# Date: Last Update: Jun 12 2016
+#
+
+# Macros
+JARFILE		= DatabaseProject
+MAINCLASS	= DatabaseProject.java
+SOURCES		= DatabaseProject.java DBFrame.java DBPanel.java FileCredentials.java FileIO.java HashTableDatabase.java LinkedListTableDatabase.java TableDatabase.java
+CLASSES		= DatabaseProject.class DBFrame.class DBPanel.class FileCredentials.class FileIO.class HashTableDatabase.class LinkedListTableDatabase.class TableDatabase.class
+
+# Build Targets
+
+all: $(JARFILE)
+
+$(JARFILE) : $(CLASSES)
+	echo Main-class: $(MAINCLASS) > Manifest
+	jar cvfm $(JARFILE) Manifest $(CLASSES)
+	rm Manifest
+	chmod +x $(JARFILE)
+
+$(CLASSES): $(SOURCES)
+	javac -Xlint $(SOURCES)  
+
+run:
+	java $(JARFILE)
+
+clean:
+	rm -f *.class $(JARFILE) Manifest
