@@ -10,9 +10,7 @@
 public class DatabaseProject{
 
 	public static void main(String[] args){
-		DBFrame frame = new DBFrame("DataBaseProject");
-    DBPanel window = new DBPanel();
-    frame.add(window);
+		DBWindow frame = new DBWindow("DataBaseProject");
     frame.setBounds(0,0, 250, 250);
     frame.setVisible(true);
 	}
