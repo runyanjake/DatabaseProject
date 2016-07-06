@@ -14,6 +14,7 @@ import java.awt.Color;
 public class DBHomePage extends JPanel implements DBPage{
 	//**** FIELDS ****
 	static final long serialVersionUID = 1L;
+	Color myColor = Color.black;
 
 	/**
 	  * Default No args constructor.
@@ -27,7 +28,7 @@ public class DBHomePage extends JPanel implements DBPage{
 	  * Initializes this DBPage.
 	  */
 	public void setupPage(){
-		this.setBackground(Color.BLACK);
+		this.setBackground(myColor);
 		this.setVisible(true);
 	}
 

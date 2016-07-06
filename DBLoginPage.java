@@ -8,12 +8,22 @@
   */
 
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import java.awt.BorderLayout;
+import javax.swing.GroupLayout;
 import java.awt.Color;
+import javax.swing.SwingUtilities;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.JTextField;
 
 public class DBLoginPage extends JPanel implements DBPage{
 	//**** FIELDS ****
 	static final long serialVersionUID = 1L;
+	Color myColor = Color.yellow;
+	JButton loginButton, signupButton;
+	JTextField user, pass;
 
 	/**
 	  * Default No args constructor.
@@ -27,7 +37,41 @@ public class DBLoginPage extends JPanel implements DBPage{
 	  * Initializes this DBPage.
 	  */
 	public void setupPage(){
-		this.setBackground(Color.YELLOW);
+		//set up page.
+		this.setBackground(myColor);
+		this.setLayout(new BorderLayout());
+		//Format page
+		JPanel inner = new JPanel();
+		GroupLayout layout = new GroupLayout(inner);
+		inner.setLayout(layout);
+		layout.setAutoCreateGaps(true);
+		layout.setAutoCreateContainerGaps(true);
+		inner.setBackground(myColor);
+		//set up text field.
+		user = new JTextField("Username", 23);
+		pass = new JTextField("Password", 1);
+		//set up butttons
+		loginButton = new JButton("Log In");
+		loginButton.addActionListener(new loginButtonListener());
+		signupButton = new JButton("Sign Up");
+		signupButton.addActionListener(new clearButtonListener());
+		//put togetheer using GroupLayout's group setup
+		layout.setVerticalGroup(
+			layout.createSequentialGroup()
+				.addComponent(user)
+				.addComponent(pass)
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+					.addComponent(loginButton)
+					.addComponent(signupButton)));
+		layout.setHorizontalGroup(
+			layout.createSequentialGroup()
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+					.addComponent(user)
+					.addComponent(pass)
+					.addComponent(loginButton))
+				.addComponent(signupButton));
+		this.add(inner);
+		//set visible
 		this.setVisible(true);
 	}
 
@@ -37,4 +81,30 @@ public class DBLoginPage extends JPanel implements DBPage{
 	public void updatePage(){
 
 	}
+
+
+	/**
+	  * Actionlistener for Button
+	  */
+	public class loginButtonListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			System.out.println("User entered credentials: " + user.getText() + " " + pass.getText());
+			DBWindow frame = (DBWindow)SwingUtilities.getRoot(loginButton);
+			if(false /**Login clears*/ ){
+				frame.attemptNextPage("home");
+			}else{
+				JOptionPane.showConfirmDialog(frame, "Invalid Credentials. Please try again.", "Error!", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+
+	/**
+	  * Actionlistener for Button
+	  */
+	public class clearButtonListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			
+		}
+	}
+
 }

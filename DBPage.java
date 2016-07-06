@@ -7,9 +7,12 @@
   *
   */
 
+import java.awt.Color;
+
 public interface DBPage {
 	//**** FIELDS ****
 	static final long serialVersionUID = 1L;
+  Color myColor = Color.gray;
 
 	//**** METHODS ****
 	public void setupPage();

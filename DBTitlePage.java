@@ -14,6 +14,7 @@ import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -21,6 +22,7 @@ public class DBTitlePage extends JPanel implements DBPage{
 	//**** FIELDS ****
 	static final long serialVersionUID = 1L;
 	JButton beginButton;
+	Color myColor = Color.cyan;
 
 	/**
 	  * Default No args constructor.
@@ -35,12 +37,17 @@ public class DBTitlePage extends JPanel implements DBPage{
 	  */
 	public void setupPage(){
 		//set up page.
-		this.setBackground(Color.cyan);
+		this.setBackground(myColor);
 		this.setLayout(new BorderLayout());
+		//Format page
+		JPanel inner = new JPanel(new BorderLayout());
+		inner.setBackground(myColor);
 		//set up button
-		beginButton = new JButton();
+		beginButton = new JButton("Begin!");
 		beginButton.addActionListener(new startButtonListener());
-		this.add(beginButton, BorderLayout.CENTER);
+		inner.add(beginButton,BorderLayout.PAGE_END);
+		//put it all together
+		this.add(inner, BorderLayout.LINE_END);
 		//make visible
 		this.setVisible(true);
 	}

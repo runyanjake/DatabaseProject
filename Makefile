@@ -28,3 +28,8 @@ run:
 
 clean:
 	rm -f *.class $(JARFILE) Manifest
+
+test:
+	make clean
+	make
+	make run
