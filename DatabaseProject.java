@@ -25,7 +25,7 @@ public class DatabaseProject{
   }
 
   public void initializeDB(){
-    frame = new DBWindow("DataBaseProject");
+    frame = new DBWindow("Jake's Database Project");
     frame.addWindowListener(new DBWindowListener());
     frame.setBounds(0,0, 400, 300);
     frame.setVisible(true);

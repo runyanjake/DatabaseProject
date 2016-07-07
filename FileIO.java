@@ -18,11 +18,11 @@ import java.io.IOException;
 public class FileIO{
 
 	/**
-	  * Reads from a input file to a TableDatabase holding Strings.
-	  * @param T The TableDatabase we wish to compile data to.
+	  * Reads from a input file to a String.
+	  * @param s The String we wish to compile data to.
 	  * @param input The input file we would like to read from.
 	  */
-	public static void read(TableDatabase<String> T, File input){
+	private static void read(String s, File input){
 		try{
 			FileReader fread = new FileReader(input);
 			BufferedReader in = new BufferedReader(fread);
@@ -34,11 +34,11 @@ public class FileIO{
 	}
 
 	/**
-	  * Writes to a input file from a generic TableDatabase.
-	  * @param T The geneic TableDatabase we wish to write data from.
+	  * Writes to a input file from a String.
+	  * @param s The String we wish to write data from.
 	  * @param output The output file we would like to write to.
 	  */
-	public static void write(TableDatabase<?> T, File output){
+	private static void write(String s, File output){
 		try{
 			FileWriter fwrite = new FileWriter(output);
 			BufferedWriter out = new BufferedWriter(fwrite);

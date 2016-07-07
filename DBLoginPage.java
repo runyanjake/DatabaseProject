@@ -54,7 +54,7 @@ public class DBLoginPage extends JPanel implements DBPage{
 		loginButton = new JButton("Log In");
 		loginButton.addActionListener(new loginButtonListener());
 		signupButton = new JButton("Sign Up");
-		signupButton.addActionListener(new clearButtonListener());
+		signupButton.addActionListener(new signupButtonListener());
 		//put togetheer using GroupLayout's group setup
 		layout.setVerticalGroup(
 			layout.createSequentialGroup()
@@ -93,7 +93,7 @@ public class DBLoginPage extends JPanel implements DBPage{
 			if(false /**Login clears*/ ){
 				frame.attemptNextPage("home");
 			}else{
-				JOptionPane.showConfirmDialog(frame, "Invalid Credentials. Please try again.", "Error!", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showConfirmDialog(frame, "Invalid Credentials.\nPlease try again or select 'Sign Up'.", "Error!", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
@@ -101,9 +101,10 @@ public class DBLoginPage extends JPanel implements DBPage{
 	/**
 	  * Actionlistener for Button
 	  */
-	public class clearButtonListener implements ActionListener{
+	public class signupButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			
+			DBWindow frame = (DBWindow)SwingUtilities.getRoot(signupButton);
+			frame.attemptNextPage("signup");
 		}
 	}
 
