@@ -46,7 +46,7 @@ public class DBSignupPage extends JPanel implements DBPage{
 		inner.setBackground(myColor);
 		//set up button (right side inner page)
 		signupButton = new JButton("Sign Up");
-		signupButton.addActionListener(new startButtonListener());
+		signupButton.addActionListener(new signupButtonListener());
 		inner.add(signupButton,BorderLayout.PAGE_END);
 		//set up fields (left/middle inner page)
 		JPanel fields = new JPanel();
@@ -91,10 +91,11 @@ public class DBSignupPage extends JPanel implements DBPage{
 	/**
 	  * Actionlistener for Button
 	  */
-	public class startButtonListener implements ActionListener{
+	public class signupButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
+			FileCredentials fc = new FileCredentials();
 			DBWindow frame= (DBWindow)SwingUtilities.getRoot(signupButton);
-			if(false /**user/pass invalidvalid*/){
+			if(fc.userExists(user.getText())){
 				JOptionPane.showConfirmDialog(frame, "Sorry, that username is already taken.\nPlease choose another.", "Username error!", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
 				
 			}else if(!(pass.getText().equals(vpass.getText()))){
@@ -102,6 +103,7 @@ public class DBSignupPage extends JPanel implements DBPage{
 			}else{ //nothing was wrong
 				System.out.println("New User:\n\tName: " + name.getText() + "\n\tUsername: " + user.getText() + "\n\tPassword: " + pass.getText() + "\n\tBio: " + bio.getText());
 				//create new user account, modify the user/pass file, and generate a new user file.
+				fc.addCredentials(user.getText(), pass.getText());
 				frame.attemptNextPage("title");
 			}
 		}

@@ -9,14 +9,16 @@
 
 //this class will have a file of some weird type and will have the methods addcredentials, verifycredentials, and maybe removecredentails. It will check within a file that it generates fo all these methods.
 
+import java.io.File;
+
 public class FileCredentials{
 
 	private static String credFilename = "credentials.dtbf"; //databasefile!
+	private static File credFile;
 	//find some way to check if this exists. a nonexistant one means we gotta create a blank one. Can also parse the folder through bash commands or something and rm *.dtbf or something.
 
 	public FileCredentials(){
-		//see above note
-		//this should read in the file to a 
+		credFile = new File("./" + credFilename);
 	}
 
 	private class CredentialPair{
@@ -24,6 +26,25 @@ public class FileCredentials{
 		public CredentialPair(String u, String p){user = u; pass = p;}
 		public String getUser(){return user;}
 		public String getPass(){return pass;}
+		public String toString(){return "User: " + user + "  Pass: " + pass + "\n";}
+	}
+
+	/**
+	 * Reads in the list of user/pass credentials stored in ./<credFilename>
+	 * @return Returns the list of credentials stored in the credentials file.
+	 */
+	public CredentialPair[] importCredentials(){
+		String out = FileIO.read(credFile);
+
+		String[] kpCombos = out.split("~");
+		int numCreds = kpCombos.length;
+		CredentialPair[] creds = new CredentialPair[numCreds];
+		for(int a = 0; a < numCreds; a++){
+			String[] usrpss = kpCombos[a].split("`");
+			creds[a] = new CredentialPair(usrpss[0], usrpss[1]);
+		}
+
+		return creds;
 	}
 
 	/**
@@ -33,17 +54,26 @@ public class FileCredentials{
 	  * @return TRUE if the credentials were added successfully, FALSE if there was any probem that prevented them from being added.
 	  */
 	public boolean addCredentials(String user, String pass){
-		return true;
+		if(!userExists(user)){
+			FileIO.addToFile(user+"`"+pass+"~", credFile); //write function not working yet
+			return true;
+		}
+		return false;
 	}
 
 	/**
 	  * Verifies that a key/pass combo exists already.
 	  * @param user The username specified. This will be used to verify the availability of a certain username.
-	  * @param pass The password associated with this username.
-	  * @return The index of the combo if it exists, -1 if no such user/pass exists.
+	  * @return True if the combo exists, false if no such user/pass exists.
 	  */
-	public int kpComboExists(String user, String pass){
-		return -1;
+	public boolean userExists(String user){
+		CredentialPair[] creds = importCredentials();
+		for(CredentialPair c : creds){
+			if(c.user.equals(user)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -53,15 +83,13 @@ public class FileCredentials{
 	  * @return TRUE if the specified credentials exist in the Credentials ArrayList and they are correct, FALSE if they do not exist or are incorrect.
 	  */
 	public boolean verifyCredentials(String user, String pass){
+		CredentialPair[] creds = importCredentials();
+		for(CredentialPair c : creds){
+			if(c.user.equals(user) && c.pass.equals(pass)){
+				return true;
+			}
+		}
 		return false;
-	}
-
-	/**
-	  * Syncs the credentials stored in the local Arraylist with the credentials stored in the file.
-	  * @note This method favors keeping credentials; It will add credentials from the ArrayList to the file, but will not delete non-present keys.
-	  */
-	public static void syncCredentials(){
-
 	}
 
 }

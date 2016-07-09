@@ -21,6 +21,7 @@ public class DatabaseProject{
   }
 
   public DatabaseProject(){
+    testDBP();
     initializeDB();
   }
 
@@ -47,6 +48,11 @@ public class DatabaseProject{
     public void windowDeiconified(WindowEvent e){}
     public void windowActivated(WindowEvent e){}
     
+  }
+
+  public void testDBP(){
+    FileCredentials fc = new FileCredentials();
+    fc.addCredentials("hello", "world");
   }
 
 }
