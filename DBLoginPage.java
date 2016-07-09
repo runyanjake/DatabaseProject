@@ -88,9 +88,10 @@ public class DBLoginPage extends JPanel implements DBPage{
 	  */
 	public class loginButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			System.out.println("User entered credentials: " + user.getText() + " " + pass.getText());
 			DBWindow frame = (DBWindow)SwingUtilities.getRoot(loginButton);
-			if(false /**Login clears*/ ){
+			FileCredentials fc = new FileCredentials();
+			if(fc.validateCredentials(user.getText(), pass.getText())){
+				frame.currentUser = user.getText();
 				frame.attemptNextPage("home");
 			}else{
 				JOptionPane.showConfirmDialog(frame, "Invalid Credentials.\nPlease try again or select 'Sign Up'.", "Error!", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);

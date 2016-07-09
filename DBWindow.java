@@ -22,6 +22,7 @@ public class DBWindow extends JFrame{
   static final String LOGIN = "login";
   static final String HOME = "home";
   static final String SIGNUP = "signup";
+  String currentUser = null;
 
 	public DBWindow(String title){
 		  super(title);
@@ -62,33 +63,12 @@ public class DBWindow extends JFrame{
     * @param target The target card to flip to. By default this should be the "next" card.
     */
   public void attemptNextPage(String target){
-    /**
-    //Determine what to do based on the next card.
-    //ON TITLE PAGE, ATTEMPTING LOGIN
-      if(target.equals(LOGIN)){ //if using login.
-        ((CardLayout)window.getLayout()).show(window, target); //(LOGIN)
-      }else{ //if using signup feature (change to else if)
-        //TODO
-      }
-    //ON LOGIN PAGE, ATTEMPTING HOME
-      //TODO: write validation method, can possibly throw different errors.
-      if(target.equals(HOME) && true){ //AND if validated
-        ((CardLayout)window.getLayout()).show(window, target); //(HOME)
-      }else if(target.equals(HOME)){ //not validated
-        //JOptionPane some error message and refresh the current window
-      }
-    //ON HOME PAGE, ATTEMPTION VARIOUS FUNCTIONALITY
-      //write if statement for all options.
-      if(false){
-        ((CardLayout)window.getLayout()).show(window, target);
-      }
-      */
     if(target.equals(LOGIN)){
         ((CardLayout)window.getLayout()).show(window, LOGIN);
         this.setTitle("Log In");
     }else if(target.equals(HOME)){
         ((CardLayout)window.getLayout()).show(window, HOME);
-        this.setTitle("<USERNAME>'s Homepage");
+        this.setTitle(currentUser+"'s Homepage");
     }else if(target.equals(SIGNUP)){
         ((CardLayout)window.getLayout()).show(window, SIGNUP);
         this.setTitle("Sign Up");

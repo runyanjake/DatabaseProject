@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JLabel;
 
 public class DBSignupPage extends JPanel implements DBPage{
 
@@ -25,7 +26,7 @@ public class DBSignupPage extends JPanel implements DBPage{
 	JButton signupButton;
 	Color myColor = Color.GREEN;
 	JTextField user,pass,vpass,name,bio;
-
+	JLabel juser,jpass,jvpass,jname,jbio;
 	/**
 	  * Default No args constructor.
 	  */
@@ -55,25 +56,49 @@ public class DBSignupPage extends JPanel implements DBPage{
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
 		fields.setBackground(myColor);
-		name = new JTextField("Name", 1);
-		user = new JTextField("Username", 1);
-		pass = new JTextField("Password", 1);
-		vpass = new JTextField("Verify Password", 1);
-		bio = new JTextField("Bio", 1);
+		name = new JTextField("John Doe", 1);
+		user = new JTextField("johndoe35", 1);
+		pass = new JTextField("password123", 1);
+		vpass = new JTextField("password123", 1);
+		bio = new JTextField("Hey, It's John Doe!", 1);
+		jname = new JLabel("Name");
+		juser = new JLabel("Username");
+		jpass = new JLabel("Password");
+		jvpass = new JLabel("Verify Password");
+		jbio = new JLabel("A Short Bio");
 		layout.setVerticalGroup(
 			layout.createSequentialGroup()
-				.addComponent(name)
-				.addComponent(user)
-				.addComponent(pass)
-				.addComponent(vpass)
-				.addComponent(bio));
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+					.addComponent(jname)
+					.addComponent(name))
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+					.addComponent(juser)
+					.addComponent(user))
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+					.addComponent(jpass)
+					.addComponent(pass))
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+					.addComponent(jvpass)
+					.addComponent(vpass))
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+					.addComponent(jbio)
+					.addComponent(bio)));
 		layout.setHorizontalGroup(
-			layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addComponent(name)
-				.addComponent(user)
-				.addComponent(pass)
-				.addComponent(vpass)
-				.addComponent(bio));
+			layout.createSequentialGroup()
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+					.addComponent(jname)
+					.addComponent(juser)
+					.addComponent(jpass)
+					.addComponent(jvpass)
+					.addComponent(jbio))
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+					.addComponent(name)
+					.addComponent(user)
+					.addComponent(pass)
+					.addComponent(vpass)
+					.addComponent(bio))
+				);
+		
 		//put it all together
 		this.add(inner, BorderLayout.LINE_END);
 		this.add(fields, BorderLayout.CENTER);

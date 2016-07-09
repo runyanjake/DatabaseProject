@@ -82,7 +82,7 @@ public class FileCredentials{
 	  * @param pass The password associated with this username.
 	  * @return TRUE if the specified credentials exist in the Credentials ArrayList and they are correct, FALSE if they do not exist or are incorrect.
 	  */
-	public boolean verifyCredentials(String user, String pass){
+	public boolean validateCredentials(String user, String pass){
 		CredentialPair[] creds = importCredentials();
 		for(CredentialPair c : creds){
 			if(c.user.equals(user) && c.pass.equals(pass)){
