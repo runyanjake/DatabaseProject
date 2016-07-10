@@ -82,6 +82,8 @@ public class DBSignupPage extends JPanel implements DBPage{
 		jpass = new JLabel("Password");
 		jvpass = new JLabel("Verify Password");
 		jbio = new JLabel("A Short Bio");
+		
+		//set layout for all the input buttons and labels
 		layout.setVerticalGroup(
 			layout.createSequentialGroup()
 				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)

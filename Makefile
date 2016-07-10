@@ -7,8 +7,8 @@
 # Macros
 JARFILE		= DatabaseProject
 MAINCLASS	= DatabaseProject.java
-SOURCES		= DatabaseProject.java DBWindow.java FileCredentials.java FileIO.java HashTableDatabase.java LinkedListTableDatabase.java TableDatabase.java DBPage.java DBTitlePage.java DBLoginPage.java DBHomePage.java
-CLASSES		= DatabaseProject.class DBWindow.class FileCredentials.class FileIO.class HashTableDatabase.class LinkedListTableDatabase.class TableDatabase.class DBPage.class DBTitlePage.class DBLoginPage.class DBHomePage.class
+SOURCES		= DatabaseProject.java DBWindow.java FileCredentials.java UserDataIO.java FileIO.java HashTableDatabase.java LinkedListTableDatabase.java TableDatabase.java DBPage.java DBTitlePage.java DBLoginPage.java DBHomePage.java
+CLASSES		= DatabaseProject.class DBWindow.class FileCredentials.class UserDataIO.class FileIO.class HashTableDatabase.class LinkedListTableDatabase.class TableDatabase.class DBPage.class DBTitlePage.class DBLoginPage.class DBHomePage.class
 
 # Build Targets
 

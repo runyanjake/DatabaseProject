@@ -51,8 +51,7 @@ public class DatabaseProject{
   }
 
   public void testDBP(){
-    FileCredentials fc = new FileCredentials();
-    fc.addCredentials("hello", "world");
+    
   }
 
 }

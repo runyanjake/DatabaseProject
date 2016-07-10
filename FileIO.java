@@ -79,12 +79,6 @@ public class FileIO{
 
 	}
 
-	/**
-	  * Converts a generic TableDatabase to a String TableDatabase for use with the write method.
-	  * -- HELPER METHOD FOR write(T,output) --
-	  */
-	private static TableDatabase<String> dbToString(TableDatabase<?> T){
-		return null;
-	}
+	
 
 }

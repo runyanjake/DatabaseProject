@@ -21,6 +21,9 @@ public class FileCredentials{
 		credFile = new File("./" + credFilename);
 	}
 
+	/**
+	  * Inner class that represents a user/pass combo
+	  */
 	private class CredentialPair{
 		String user, pass;
 		public CredentialPair(String u, String p){user = u; pass = p;}
