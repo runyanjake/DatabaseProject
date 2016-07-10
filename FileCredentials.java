@@ -18,7 +18,8 @@ public class FileCredentials{
 	//find some way to check if this exists. a nonexistant one means we gotta create a blank one. Can also parse the folder through bash commands or something and rm *.dtbf or something.
 
 	public FileCredentials(){
-		credFile = new File("./" + credFilename);
+		String curFolder = System.getProperty("user.dir");
+		credFile = new File(curFolder + File.separator + "credentials" + File.separator + credFilename);
 	}
 
 	/**

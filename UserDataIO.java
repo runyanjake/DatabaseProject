@@ -24,7 +24,10 @@ public class UserDataIO{
 	  * @param bio The user's bio.
 	  */
 	public void generateNewUserData(String name, String user, String pass, String bio){
-
+		String fileContents = name + "~" + user + "~" + pass + "~" + bio + "~";
+		String curFolder = System.getProperty("user.dir");
+		File userFile = new File(curFolder + File.separator + "users" + File.separator + user + ".dtbf");
+		FileIO.overWrite(fileContents, userFile);
 	}
 
 	/**

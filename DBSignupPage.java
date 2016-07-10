@@ -140,12 +140,12 @@ public class DBSignupPage extends JPanel implements DBPage{
 			DBWindow frame= (DBWindow)SwingUtilities.getRoot(signupButton);
 			if(fc.userExists(user.getText())){
 				JOptionPane.showConfirmDialog(frame, "Sorry, that username is already taken.\nPlease choose another.", "Username error!", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
-				
 			}else if(!(pass.getText().equals(vpass.getText()))){
 				JOptionPane.showConfirmDialog(frame, "Passwords do not match.\nPlease re-enter.", "Password error!", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
 			}else{ //nothing was wrong
 				System.out.println("New User:\n\tName: " + name.getText() + "\n\tUsername: " + user.getText() + "\n\tPassword: " + pass.getText() + "\n\tBio: " + bio.getText());
-				//create new user account, modify the user/pass file, and generate a new user file.
+				UserDataIO usr = new UserDataIO();
+				usr.generateNewUserData(name.getText(),user.getText(),pass.getText(),bio.getText());
 				fc.addCredentials(user.getText(), pass.getText());
 				frame.attemptNextPage("title");
 			}

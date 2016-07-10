@@ -48,7 +48,7 @@ public class FileIO{
 	  * @param s The String we wish to write data from.
 	  * @param output The output file we would like to write to.
 	  */
-	public static void write(String s, File output){
+	public static void overWrite(String s, File output){
 		try{
 			FileWriter fwrite = new FileWriter(output);
 			BufferedWriter out = new BufferedWriter(fwrite);
