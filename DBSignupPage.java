@@ -23,7 +23,7 @@ public class DBSignupPage extends JPanel implements DBPage{
 
 	//**** FIELDS ****
 	static final long serialVersionUID = 1L;
-	JButton signupButton;
+	JButton signupButton,backButton;
 	Color myColor = Color.GREEN;
 	JTextField user,pass,vpass,name,bio;
 	JLabel juser,jpass,jvpass,jname,jbio;
@@ -45,10 +45,26 @@ public class DBSignupPage extends JPanel implements DBPage{
 		//Format page
 		JPanel inner = new JPanel(new BorderLayout());
 		inner.setBackground(myColor);
-		//set up button (right side inner page)
+		//set up navigation buttons (right side inner page)
 		signupButton = new JButton("Sign Up");
 		signupButton.addActionListener(new signupButtonListener());
-		inner.add(signupButton,BorderLayout.PAGE_END);
+		backButton = new JButton("Go Back");
+		backButton.addActionListener(new backButtonListener());
+		JPanel navButtons = new JPanel();
+		navButtons.setBackground(myColor);
+		GroupLayout nblayout = new GroupLayout(navButtons);
+		navButtons.setLayout(nblayout);
+		nblayout.setVerticalGroup(
+			nblayout.createSequentialGroup()
+				.addComponent(backButton)
+				.addComponent(signupButton));
+		nblayout.setHorizontalGroup(
+			nblayout.createSequentialGroup()
+				.addGroup(
+						nblayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+							.addComponent(backButton)
+							.addComponent(signupButton)));
+		inner.add(navButtons,BorderLayout.EAST);
 		//set up fields (left/middle inner page)
 		JPanel fields = new JPanel();
 		GroupLayout layout = new GroupLayout(fields);
@@ -85,7 +101,7 @@ public class DBSignupPage extends JPanel implements DBPage{
 					.addComponent(bio)));
 		layout.setHorizontalGroup(
 			layout.createSequentialGroup()
-				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
 					.addComponent(jname)
 					.addComponent(juser)
 					.addComponent(jpass)
@@ -114,7 +130,7 @@ public class DBSignupPage extends JPanel implements DBPage{
 	}
 
 	/**
-	  * Actionlistener for Button
+	  * Actionlistener for signupButton
 	  */
 	public class signupButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
@@ -131,6 +147,16 @@ public class DBSignupPage extends JPanel implements DBPage{
 				fc.addCredentials(user.getText(), pass.getText());
 				frame.attemptNextPage("title");
 			}
+		}
+	}
+
+	/**
+	  * Actionlistener for backButton
+	  */
+	public class backButtonListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			DBWindow frame= (DBWindow)SwingUtilities.getRoot(signupButton);
+			frame.attemptNextPage("login");
 		}
 	}
 

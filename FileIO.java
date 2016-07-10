@@ -71,7 +71,6 @@ public class FileIO{
 			FileWriter fwrite = new FileWriter(output);
 			BufferedWriter out = new BufferedWriter(fwrite);
 			toWrite = toWrite + s;
-			System.out.println("Adding " + s + " to get " + toWrite);
 			out.write(toWrite,0,toWrite.length());
 			out.close();
 		}catch(IOException e){
