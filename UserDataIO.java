@@ -36,7 +36,8 @@ public class UserDataIO{
 	  * @param user The user who is getting the database added.
 	  */
 	public void addDatabase(String databaseFileName, String user){
-
+		String curFolder = System.getProperty("user.dir");
+		FileIO.addToFile(databaseFileName + ".dtbf~", new File(curFolder + File.separator + "users" + File.separator + user + ".dtbf"));
 	}
 
 	/**

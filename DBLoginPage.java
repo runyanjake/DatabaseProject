@@ -90,11 +90,13 @@ public class DBLoginPage extends JPanel implements DBPage{
 		public void actionPerformed(ActionEvent e){
 			DBWindow frame = (DBWindow)SwingUtilities.getRoot(loginButton);
 			FileCredentials fc = new FileCredentials();
-			if(fc.validateCredentials(user.getText(), pass.getText())){
+			if(fc.validateCredentials(user.getText(), pass.getText()) == 1){
 				frame.currentUser = user.getText();
 				frame.attemptNextPage("home");
-			}else{
+			}else if(fc.validateCredentials(user.getText(), pass.getText()) == 0){
 				JOptionPane.showConfirmDialog(frame, "Invalid Credentials.\nPlease try again or select 'Sign Up'.", "Error!", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
+			}else{
+				JOptionPane.showConfirmDialog(frame, "Your user file appears to have been deleted :(\nYou'll have to create a new account.\n Sorry.", "Filesystem Error!", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

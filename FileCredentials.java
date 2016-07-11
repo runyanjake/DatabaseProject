@@ -81,19 +81,38 @@ public class FileCredentials{
 	}
 
 	/**
+	  * Checks to see if this user has a corresponding file for it in the ./users folder.
+	  * @return user The user to check.
+	  */
+	public boolean fileExists(String user){
+		String curFolder = System.getProperty("user.dir");
+		File userFile = new File(curFolder + File.separator + "users" + File.separator + user + ".dtbf");
+		if(userFile.exists()){
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	  * Verifies the accuracy of an input user/pass combo.
 	  * @param user The username specified. This will be used to verify the availability of a certain username.
 	  * @param pass The password associated with this username.
-	  * @return TRUE if the specified credentials exist in the Credentials ArrayList and they are correct, FALSE if they do not exist or are incorrect.
+	  * @return 1 if the specified credentials exist in the Credentials ArrayList and they are correct
+	  *  	0 if they do not exist or are incorrect
+	  * 	-1 if the user does not have a corresponding file.
 	  */
-	public boolean validateCredentials(String user, String pass){
+	public int validateCredentials(String user, String pass){
 		CredentialPair[] creds = importCredentials();
+		if(!fileExists(user)){
+			System.out.println("A filesystem error occurred: no such user file exists.");
+			return -1;
+		}
 		for(CredentialPair c : creds){
 			if(c.user.equals(user) && c.pass.equals(pass)){
-				return true;
+				return 1;
 			}
 		}
-		return false;
+		return 0;
 	}
 
 }
