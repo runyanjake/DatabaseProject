@@ -84,9 +84,22 @@ public class FileCredentials{
 	  * Checks to see if this user has a corresponding file for it in the ./users folder.
 	  * @return user The user to check.
 	  */
-	public boolean fileExists(String user){
+	public boolean userFileExists(String user){
 		String curFolder = System.getProperty("user.dir");
 		File userFile = new File(curFolder + File.separator + "users" + File.separator + user + ".dtbf");
+		if(userFile.exists()){
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	  * Checks to see if this database name has a corresponding file for it in the ./databases folder.
+	  * @return database The database to check.
+	  */
+	public boolean databaseFileExists(String dtb){
+		String curFolder = System.getProperty("user.dir");
+		File userFile = new File(curFolder + File.separator + "databases" + File.separator + dtb + ".dtbf");
 		if(userFile.exists()){
 			return true;
 		}
@@ -103,12 +116,13 @@ public class FileCredentials{
 	  */
 	public int validateCredentials(String user, String pass){
 		CredentialPair[] creds = importCredentials();
-		if(!fileExists(user)){
-			System.out.println("A filesystem error occurred: no such user file exists.");
-			return -1;
-		}
+		
 		for(CredentialPair c : creds){
 			if(c.user.equals(user) && c.pass.equals(pass)){
+				if(!userFileExists(user)){
+					System.out.println("A filesystem error occurred: no such user file exists.");
+					return -1;
+				}
 				return 1;
 			}
 		}

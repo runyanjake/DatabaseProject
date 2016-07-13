@@ -92,6 +92,7 @@ public class DBLoginPage extends JPanel implements DBPage{
 			FileCredentials fc = new FileCredentials();
 			if(fc.validateCredentials(user.getText(), pass.getText()) == 1){
 				frame.currentUser = user.getText();
+				((DBHomePage)(frame.home)).setUser(new User(user.getText()));
 				frame.attemptNextPage("home");
 			}else if(fc.validateCredentials(user.getText(), pass.getText()) == 0){
 				JOptionPane.showConfirmDialog(frame, "Invalid Credentials.\nPlease try again or select 'Sign Up'.", "Error!", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);

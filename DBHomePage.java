@@ -15,12 +15,17 @@ public class DBHomePage extends JPanel implements DBPage{
 	//**** FIELDS ****
 	static final long serialVersionUID = 1L;
 	Color myColor = Color.black;
+	User currentUser = null;
 
 	/**
 	  * Default No args constructor.
 	  */
 	public DBHomePage(){
 		setupPage();
+	}
+
+	public void setUser(User u){
+		currentUser = u;
 	}
 
 	//**** METHODS ****
