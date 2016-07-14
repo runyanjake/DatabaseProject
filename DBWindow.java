@@ -64,15 +64,19 @@ public class DBWindow extends JFrame{
     */
   public void attemptNextPage(String target){
     if(target.equals(LOGIN)){
+        login.updatePage();
         ((CardLayout)window.getLayout()).show(window, LOGIN);
         this.setTitle("Log In");
     }else if(target.equals(HOME)){
+        home.updatePage();
         ((CardLayout)window.getLayout()).show(window, HOME);
         this.setTitle(currentUser+"'s Homepage");
     }else if(target.equals(SIGNUP)){
+        signup.updatePage();
         ((CardLayout)window.getLayout()).show(window, SIGNUP);
         this.setTitle("Sign Up");
     }else if(target.equals(TITLE)){
+        title.updatePage();
         ((CardLayout)window.getLayout()).show(window, TITLE);
         this.setTitle("Jake's Database Project");
     }

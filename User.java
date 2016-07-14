@@ -27,6 +27,7 @@ public class User{
 		setupUser(filename);
 	}
 
+	//**** METHODS ****
 	public void setupUser(String filename){
 		FileCredentials fc = new FileCredentials();
 		String curFolder = System.getProperty("user.dir");
@@ -42,10 +43,13 @@ public class User{
 		for(int a = 0; a < numOwnedDTBs; a++){
 			ownedDTBs.add(fileContents[a+4]);
 		}
-		System.out.println(this);
 	}
 
-	//**** METHODS ****
+	public void addDatabase(String dtbName){
+		UserDataIO io = new UserDataIO();
+		io.addDatabase(dtbName, username);
+	}
+
 	public String toString(){
 		String txt = "Name: "+name+"\nUsername: "+username+"\nPassword: "+password+"\nBio: "+bio+"\nDatabases:\n";
 		for(int a = 0; a < numOwnedDTBs; a++){

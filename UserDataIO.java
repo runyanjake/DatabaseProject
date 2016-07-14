@@ -17,7 +17,7 @@ public class UserDataIO{
 
 	/**
 	  * 
-	  * Generates a new template file for the user. ??MAYBE THIS COULD BE IN A ./users/******** folder???
+	  * Generates a new template file for the user.
 	  * @param name The name of the user
 	  * @param user The user's username.
 	  * @param pass The user's password.

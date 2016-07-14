@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+
 public class DBLoginPage extends JPanel implements DBPage{
 	//**** FIELDS ****
 	static final long serialVersionUID = 1L;
