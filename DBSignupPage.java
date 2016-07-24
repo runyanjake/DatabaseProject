@@ -128,7 +128,18 @@ public class DBSignupPage extends JPanel implements DBPage{
 	  * Updates this DBPage.
 	  */
 	public void updatePage(){
+		resetPage();
+	}
 
+	/**
+	  * Resets this page.
+	  */
+	public void resetPage(){
+		name.setText("John Doe");
+		user.setText("johndoe35");
+		pass.setText("password123");
+		vpass.setText("password123");
+		bio.setText("Hey, It's John Doe!");
 	}
 
 	/**

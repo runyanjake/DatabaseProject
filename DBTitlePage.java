@@ -56,7 +56,14 @@ public class DBTitlePage extends JPanel implements DBPage{
 	  * Updates this DBPage.
 	  */
 	public void updatePage(){
+		//nothing
+	}
 
+	/**
+	  * Resets this page.
+	  */
+	public void resetPage(){
+		//nothing
 	}
 
 	/**

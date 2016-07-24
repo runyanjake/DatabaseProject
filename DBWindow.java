@@ -63,6 +63,7 @@ public class DBWindow extends JFrame{
     * @param target The target card to flip to. By default this should be the "next" card.
     */
   public void attemptNextPage(String target){
+
     if(target.equals(LOGIN)){
         login.updatePage();
         ((CardLayout)window.getLayout()).show(window, LOGIN);

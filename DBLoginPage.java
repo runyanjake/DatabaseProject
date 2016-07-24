@@ -80,9 +80,16 @@ public class DBLoginPage extends JPanel implements DBPage{
 	  * Updates this DBPage.
 	  */
 	public void updatePage(){
-
+		resetPage();
 	}
 
+	/**
+	  * Resets this page.
+	  */
+	public void resetPage(){
+		user.setText("Username");
+		pass.setText("Password");
+	}
 
 	/**
 	  * Actionlistener for Button
@@ -94,6 +101,7 @@ public class DBLoginPage extends JPanel implements DBPage{
 			if(fc.validateCredentials(user.getText(), pass.getText()) == 1){
 				frame.currentUser = user.getText();
 				((DBHomePage)(frame.home)).setUser(new User(user.getText()));
+				((DBHomePage)(frame.home)).updatePage();
 				frame.attemptNextPage("home");
 			}else if(fc.validateCredentials(user.getText(), pass.getText()) == 0){
 				JOptionPane.showConfirmDialog(frame, "Invalid Credentials.\nPlease try again or select 'Sign Up'.", "Error!", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE);

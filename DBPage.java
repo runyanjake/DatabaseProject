@@ -17,4 +17,5 @@ public interface DBPage {
 	//**** METHODS ****
 	public void setupPage();
 	public void updatePage();
+  public void resetPage();
 }
