@@ -22,7 +22,8 @@ public class DBTitlePage extends JPanel implements DBPage{
 	//**** FIELDS ****
 	static final long serialVersionUID = 1L;
 	JButton beginButton;
-	Color myColor = Color.cyan;
+	Color myPrimaryColor = new Color(255,0,0);
+	Color mySecondaryColor = new Color(255,50,50);
 
 	/**
 	  * Default No args constructor.
@@ -37,11 +38,11 @@ public class DBTitlePage extends JPanel implements DBPage{
 	  */
 	public void setupPage(){
 		//set up page.
-		this.setBackground(myColor);
+		this.setBackground(myPrimaryColor);
 		this.setLayout(new BorderLayout());
 		//Format page
 		JPanel inner = new JPanel(new BorderLayout());
-		inner.setBackground(myColor);
+		inner.setBackground(myPrimaryColor);
 		//set up button
 		beginButton = new JButton("Begin!");
 		beginButton.addActionListener(new startButtonListener());

@@ -18,13 +18,19 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+import java.awt.Font;
 
 public class DBHomePage extends JPanel implements DBPage{
 	//**** FIELDS ****
 	static final long serialVersionUID = 1L;
-	Color myColor = Color.green;
+	Color myPrimaryColor = new Color(0,255,0);
+	Color mySecondaryColor = new Color(150,250,150);
 	User currentUser = null;
-	JLabel name,bio,ownedDatabases;
+	JLabel name,ownedDatabases;
+	JTextArea bio;
+	JScrollPane bioscroll;
+	JPanel bioscrollpanel;
 	JButton logoutButton,makeButton,editButton;
 	JScrollPane scroll;
 	JList<String> databases;
@@ -45,7 +51,7 @@ public class DBHomePage extends JPanel implements DBPage{
 	  * Initializes this DBPage.
 	  */
 	public void setupPage(){
-		this.setBackground(myColor);
+		this.setBackground(myPrimaryColor);
 		this.setVisible(true);
 
 		//Format THIS page.
@@ -54,35 +60,49 @@ public class DBHomePage extends JPanel implements DBPage{
 		//create left side components
 		if(currentUser == null){
 			name = new JLabel(null + "'s Home");
-			bio = new JLabel("<NO BIO FOUND>");
+			bio = new JTextArea("<NO BIO FOUND>");
 		}else{
 			name = new JLabel(currentUser.name + "'s Home");
-			bio = new JLabel(currentUser.bio);
+			bio = new JTextArea(currentUser.bio);
 		}
-		
+		name.setFont(new Font("namefont", Font.BOLD, 20));
+		bio.setLineWrap(true);
+		bio.setWrapStyleWord(true);
+		bio.setEditable(false);
+
+		bioscroll = new JScrollPane(bio);
+
+		bioscrollpanel = new JPanel();
+		bioscrollpanel.setLayout(new BorderLayout());
+		bioscrollpanel.setBackground(myPrimaryColor);
+		bioscrollpanel.add(bioscroll, BorderLayout.CENTER);
+
 		logoutButton = new JButton("Logout");
 		logoutButton.addActionListener(new logoutButtonListener());
+
+		bioscroll.setBackground(mySecondaryColor);
+		bio.setBackground(mySecondaryColor);
 		
-		//make left side page
+		//**** MAKE LEFT SIDE PAGE****
 		JPanel leftside = new JPanel();
 		GroupLayout lsLayout = new GroupLayout(leftside);
 		leftside.setLayout(lsLayout);
-		leftside.setBackground(myColor);
-		lsLayout.setVerticalGroup(lsLayout.createSequentialGroup().addComponent(name).addComponent(bio).addComponent(logoutButton));
+		leftside.setBackground(myPrimaryColor);
+		lsLayout.setVerticalGroup(lsLayout.createSequentialGroup().addComponent(name).addComponent(bioscrollpanel).addComponent(logoutButton));
 		lsLayout.setHorizontalGroup(lsLayout.createSequentialGroup().addGroup(lsLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
 					.addComponent(name)
-					.addComponent(bio)
+					.addComponent(bioscrollpanel)
 					.addComponent(logoutButton)));
 
 		//create right side components
 		
-		//make right side page
+		//**** MAKE RIGHT SIDE PAGE****
 		JPanel rightside = new JPanel();
 		GroupLayout rsLayout = new GroupLayout(rightside);
 		rightside.setLayout(rsLayout);
-		rightside.setBackground(myColor);
+		rightside.setBackground(myPrimaryColor);
 		//put together.
-		this.add(leftside, BorderLayout.PAGE_START);
+		this.add(leftside, BorderLayout.LINE_START);
 		this.add(rightside,BorderLayout.CENTER);
 	}
 

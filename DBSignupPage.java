@@ -24,7 +24,8 @@ public class DBSignupPage extends JPanel implements DBPage{
 	//**** FIELDS ****
 	static final long serialVersionUID = 1L;
 	JButton signupButton,backButton;
-	Color myColor = Color.GREEN;
+	Color myPrimaryColor = new Color(0,255,0);
+	Color mySecondaryColor = new Color(50,255,50);
 	JTextField user,pass,vpass,name,bio;
 	JLabel juser,jpass,jvpass,jname,jbio;
 	/**
@@ -40,18 +41,18 @@ public class DBSignupPage extends JPanel implements DBPage{
 	  */
 	public void setupPage(){
 		//set up page.
-		this.setBackground(myColor);
+		this.setBackground(myPrimaryColor);
 		this.setLayout(new BorderLayout());
 		//Format page
 		JPanel inner = new JPanel(new BorderLayout());
-		inner.setBackground(myColor);
+		inner.setBackground(myPrimaryColor);
 		//set up navigation buttons (right side inner page)
 		signupButton = new JButton("Sign Up");
 		signupButton.addActionListener(new signupButtonListener());
 		backButton = new JButton("Go Back");
 		backButton.addActionListener(new backButtonListener());
 		JPanel navButtons = new JPanel();
-		navButtons.setBackground(myColor);
+		navButtons.setBackground(myPrimaryColor);
 		GroupLayout nblayout = new GroupLayout(navButtons);
 		navButtons.setLayout(nblayout);
 		nblayout.setVerticalGroup(
@@ -71,7 +72,7 @@ public class DBSignupPage extends JPanel implements DBPage{
 		fields.setLayout(layout);
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
-		fields.setBackground(myColor);
+		fields.setBackground(myPrimaryColor);
 		name = new JTextField("John Doe", 1);
 		user = new JTextField("johndoe35", 1);
 		pass = new JTextField("password123", 1);

@@ -22,7 +22,8 @@ import javax.swing.JTextField;
 public class DBLoginPage extends JPanel implements DBPage{
 	//**** FIELDS ****
 	static final long serialVersionUID = 1L;
-	Color myColor = Color.yellow;
+	Color myPrimaryColor = new Color(255,230,0);
+	Color mySecondaryColor = new Color(255,245,50);
 	JButton loginButton, signupButton;
 	JTextField user, pass;
 
@@ -39,7 +40,7 @@ public class DBLoginPage extends JPanel implements DBPage{
 	  */
 	public void setupPage(){
 		//set up page.
-		this.setBackground(myColor);
+		this.setBackground(myPrimaryColor);
 		this.setLayout(new BorderLayout());
 		//Format page
 		JPanel inner = new JPanel();
@@ -47,7 +48,7 @@ public class DBLoginPage extends JPanel implements DBPage{
 		inner.setLayout(layout);
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
-		inner.setBackground(myColor);
+		inner.setBackground(myPrimaryColor);
 		//set up text field.
 		user = new JTextField("Username", 23);
 		pass = new JTextField("Password", 1);

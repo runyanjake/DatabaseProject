@@ -12,7 +12,8 @@ import java.awt.Color;
 public interface DBPage {
 	//**** FIELDS ****
 	static final long serialVersionUID = 1L;
-  Color myColor = Color.gray;
+  Color myPrimaryColor = Color.gray;
+  Color mySecondaryColor = Color.white;
 
 	//**** METHODS ****
 	public void setupPage();
