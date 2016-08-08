@@ -65,7 +65,6 @@ public class DBHomePage extends JPanel implements DBPage{
 			name = new JLabel(currentUser.name + "'s Home");
 			bio = new JTextArea(currentUser.bio);
 		}
-		name.setFont(new Font("namefont", Font.BOLD, 20));
 		bio.setLineWrap(true);
 		bio.setWrapStyleWord(true);
 		bio.setEditable(false);
